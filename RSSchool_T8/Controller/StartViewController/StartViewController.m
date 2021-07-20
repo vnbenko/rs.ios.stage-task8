@@ -16,6 +16,8 @@
 @property (strong, nonatomic) UIButton *timerButton;
 @property (strong, nonatomic) UIButton *shareButton;
 
+@property (assign, nonatomic) BOOL isfirstAppeareance;
+
 @end
 
 @implementation StartViewController
@@ -26,6 +28,7 @@
     self.paintingVC = [PaintingViewController new];
     self.colorVC = [ColorViewController new];
     self.timerVC = [TimerViewController new];
+    self.isfirstAppeareance = YES;
     [self setup];
 }
 
@@ -69,7 +72,7 @@
     
     [self.paletteButton setDefault];
     [self.timerButton setDefault];
-    [self.drawButton setDisabled];
+    [self.drawButton setDefault];
     [self.shareButton setDisabled];
     
     [self.paletteButton.layer setCornerRadius:10];
@@ -125,8 +128,17 @@
 }
 
 - (void)drawPainting:(UIButton *)sender {
+    if ([self.myPaintingView.currentDrawing isEqual:@0] || self.myPaintingView.currentDrawing == nil) {
+        if (self.isfirstAppeareance) {
+            self.myPaintingView.currentDrawing = @2;
+        } else {
+            self.myPaintingView.currentDrawing = self.myPaintingView.previousDrawing;
+        }
+    }
     [sender setDefault];
     [self.myPaintingView setNeedsDisplay];
+    self.myPaintingView.previousDrawing = self.myPaintingView.currentDrawing;
+    self.isfirstAppeareance = false;
 }
 
 - (void)changeToResetButton:(BOOL)check {
@@ -198,7 +210,6 @@
     [self.paintingVC setAllButtonsDefault];
     [self isDrawing:NO];
     [self.shareButton setDisabled];
-    [self.drawButton setDisabled];
 }
 
 @end

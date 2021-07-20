@@ -6,7 +6,6 @@ class TimerViewController: AppendingViewController {
     let minTimerLabel = UILabel(frame: CGRect(x: 26, y: 103, width: 7, height: 22))
     let maxTimerLabel = UILabel(frame: CGRect(x: 338, y: 103, width: 11, height: 22))
 
-    
     @objc var mainPaintView = PaintingView()
     @objc var timer = Timer()
 

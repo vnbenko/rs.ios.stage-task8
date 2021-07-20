@@ -66,18 +66,24 @@
 
 - (void)saveColorArray:(UIButton *)sender {
     if ([self.mainPaintView.colorPalette containsObject:sender]) {
-        [sender setDefaultColor:sender.backgroundColor];
+        [UIView animateWithDuration:0.3 animations:^{
+            [sender setDefaultColor:sender.backgroundColor];
+            [self.view setBackgroundColor:[UIColor whiteColor]];
+        }];
         [self.mainPaintView.colorPalette removeObject:sender];
         [self.view setBackgroundColor:[UIColor whiteColor]];
     } else {
-        [sender setHighlightedColorButton];
+        [UIView animateWithDuration:0.3 animations:^{
+            [sender setHighlightedColorButton];
+        }];
         [self.mainPaintView.colorPalette addObject:sender];
-        
         if (self.mainPaintView.colorPalette.count == 4) {
             [self.mainPaintView.colorPalette.firstObject setDefaultColor:self.mainPaintView.colorPalette.firstObject.backgroundColor];
             [self.mainPaintView.colorPalette removeObject:self.mainPaintView.colorPalette.firstObject];
         }
-        [self.view setBackgroundColor:sender.backgroundColor];
+        [UIView animateWithDuration:0.3 animations:^{
+            self.view.backgroundColor = sender.backgroundColor;
+        }];
     }
 }
 

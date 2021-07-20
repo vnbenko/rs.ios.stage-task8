@@ -8,8 +8,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (weak, nonatomic) StartViewController <PaintingDelegate> *delegate;
 @property (strong, nonatomic) NSMutableArray <UIButton *> *colorPalette;
-@property (assign, nonatomic) NSNumber *currentDrawing;
 @property (assign, nonatomic) float progress;
+@property (assign, nonatomic) NSNumber *currentDrawing;
+@property (assign, nonatomic) NSNumber *previousDrawing;
 
 - (void)changeStrokeEnd;
 

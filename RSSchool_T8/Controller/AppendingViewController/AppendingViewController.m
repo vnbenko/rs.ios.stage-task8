@@ -12,14 +12,18 @@
     [self setupAppendingBottomView];
 }
 
+- (void)touchDownSave:(UIButton *)sender {
+    [sender setHighlighted];
+}
+
 - (void)setupAppendingBottomView {
     [self.view setFrame:CGRectMake(0, 333, 375, 370)];
-    self.view.backgroundColor = [UIColor whiteColor];
     [self.view.layer setShadowColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.25].CGColor];
     [self.view.layer setShadowOffset:CGSizeMake(0, 0)];
     [self.view.layer setShadowOpacity:1.0f];
     [self.view.layer setShadowRadius:4.0f];
     self.view.layer.cornerRadius = 35;
+    [self.view setBackgroundColor:[UIColor whiteColor]];
     [self setupButton];
 }
 
@@ -43,10 +47,6 @@
     [self.view removeFromSuperview];
     [self removeFromParentViewController];
     [sender setDefault];
-}
-
-- (void)touchDownSave:(UIButton *)sender {
-    [sender setHighlighted];
 }
 
 @end
